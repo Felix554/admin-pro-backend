@@ -1,4 +1,5 @@
-
+//Para las ayudas de Res
+const { response } = require('express');
 //IMportamos el modelo Usuario
 const Usuario = require('../models/usuario');
 
@@ -15,21 +16,47 @@ const getUsuarios = async(req ,res) =>{
 
 }
 
-const crearUsuario = async(req,res) =>{
-//Como leer el Body
+const crearUsuario = async(req,res = response) =>{
+
+    //Como leer el Body
     //console.log(req.body );
     const {email, password, nombre} = req.body;
+    //Para el manejos de Errores
+    try {
 
-    const usuario = new Usuario(req.body);
+        //Validar si Email Existe
+        const existeEmail = await Usuario.findOne({ email });//Esperamos respuesta con el await
 
-    //para guardar en Base de datos
-    //await = espera a que esta promesa termine
-    await usuario.save();
+        if (existeEmail) {
+            return res.status(400).json({
+                ok:false,
+                msj: 'El Correo ya estaba registrado'
+            });
+        }
 
-    res.json({
-        ok: true,
-        usuario
-    });
+        const usuario = new Usuario(req.body);
+        //para guardar en Base de datos
+        //await = espera a que esta promesa termine
+        await usuario.save();
+
+        res.json({
+            ok: true,
+            usuario
+        });
+        
+    } catch (error) {
+
+        console.log(error)
+
+        res.status(500).json({
+
+            ok:false,
+            msj: 'Error inesperado... revisar logs'
+
+        });
+    }
+
+    
 
 }
 
