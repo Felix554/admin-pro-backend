@@ -30,6 +30,20 @@ const UsuarioSchema = Schema({
 
 });
 
+/*MODIFICAR LA NOMENCLATURA DEL CAMPO _id por udi
+*Esto es para fines visuales y no me modifica la Base de Datos
+*/
+UsuarioSchema.method('toJSON', function(){
+    //Obtener la instancia del objeto actual
+    /**
+     * Extraigo los siguientes valores de ese objeto
+     * __v, _id, ...Object
+     */
+    const {__v, _id, ...Object }=this.toObject();
+
+    Object.uid = _id;
+    return Object;
+})
 /**
  * La tabla usuario se realiza en singular porque mongoose al crearla por defecto le agrega una S para colocarla en plural
  */
