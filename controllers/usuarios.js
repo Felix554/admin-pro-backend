@@ -2,11 +2,15 @@
 //IMportamos el modelo Usuario
 const Usuario = require('../models/usuario');
 
-const getUsuarios = (req ,res) =>{
+const getUsuarios = async(req ,res) =>{
+
+    //const usuarios = await Usuario.find(); //Envia todos los datos
+    //{} = idicar un filtro + el nombre del filtro
+    const usuarios = await Usuario.find({}, 'nombre email role google' );
 
     res.json({
         ok: true,
-        msj:'GEt Usuarios'
+        usuarios
     });
 
 }
