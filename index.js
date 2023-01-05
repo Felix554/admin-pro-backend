@@ -14,6 +14,8 @@ app.use(cors());
  * use es como un midelwer que ejecuta la funcion cors a todas las lineas que estan hacia abajo
  */
 
+//Lectura y parseo del Body (Envio de datos)
+app.use(express.json());//Ojo debe ir antes de la ruta
 //Base de Datos
 dbConnection();
 
