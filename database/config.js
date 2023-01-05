@@ -10,7 +10,7 @@ const dbConnection = async() => {
             });*/
             await mongoose.connect(process.env.DB_CNN);
 
-            console.log('BD Online');
+            console.log('BD Online conectada');
         } catch (error) {
 
             console.log(error);
