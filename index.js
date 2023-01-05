@@ -23,14 +23,17 @@ console.log( process.env );
 //7Bx3geK0cUDyXKdr
 
 //Rutas
-app.get('/', (req,res) =>{
+//Utilizamos los Midelwers + Ruta 
+app.use('/api/usuarios', require('./routes/usuarios') );
+/*app.get('/', (req,res) =>{
 
     res.json({
         ok: true,
         msj: 'Hola Mundo'
     });
 
-})
+});*/
+
 
 
 //PAra levantarlo
