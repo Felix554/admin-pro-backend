@@ -1,6 +1,6 @@
 //Para las ayudas de Res
 const { response } = require('express');
-const { validationResult} = require('express-validator');
+
 //IMportamos el modelo Usuario
 const Usuario = require('../models/usuario');
 
@@ -22,16 +22,6 @@ const crearUsuario = async(req,res = response) =>{
     //Como leer el Body
     //console.log(req.body );
     const {email, password, nombre} = req.body;
-
-    const errores = validationResult( req);//Obtenemos el arreglo de errores que pasaron en mi ruta
-
-    if (!errores.isEmpty()) {
-        return res.status(400).json({
-            ok:false,
-            errors: errores.mapped()
-        });
-        
-    }
 
     //Para el manejos de Errores
 
