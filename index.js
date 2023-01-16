@@ -15,7 +15,8 @@ app.use(cors());
  */
 
 //Lectura y parseo del Body (Envio de datos)
-app.use(express.json());//Ojo debe ir antes de la ruta
+app.use(express.json());//Ojo debe ir antes de la ruta 
+ 
 //Base de Datos
 dbConnection();
 
