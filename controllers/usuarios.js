@@ -1,6 +1,9 @@
 //Para las ayudas de Res
 const { response } = require('express');
+//const bcryptjs = require('bcryptjs');
 
+//Agregamos la libreria para encriptar
+const bcrypt = require('bcryptjs');
 //IMportamos el modelo Usuario
 const Usuario = require('../models/usuario');
 
@@ -39,6 +42,12 @@ const crearUsuario = async(req,res = response) =>{
         }
 
         const usuario = new Usuario(req.body);
+
+        //Encriptar Clave
+        //Generamos la data de manera aleatoria
+        const salt          =   bcrypt.genSaltSync();
+        usuario.password    =   bcrypt.hashSync(password, salt); 
+
         //para guardar en Base de datos
         //await = espera a que esta promesa termine
         await usuario.save();
