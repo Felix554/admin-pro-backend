@@ -1,5 +1,8 @@
 //Para las ayudas de Res
 const { response } = require('express');
+//Importamos la libreria par encriptar
+const bcrypt = require('bcryptjs');
+
 //IMportamos el modelo Usuario
 const Usuario = require('../models/usuario');
 
