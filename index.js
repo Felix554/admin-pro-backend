@@ -28,6 +28,7 @@ console.log( process.env );
 //Rutas
 //Utilizamos los Midelwers + Ruta 
 app.use('/api/usuarios', require('./routes/usuarios') );
+app.use('/api/login', require('./routes/auth') );
 /*app.get('/', (req,res) =>{
 
     res.json({
@@ -36,8 +37,6 @@ app.use('/api/usuarios', require('./routes/usuarios') );
     });
 
 });*/
-
-
 
 //Para levantarlo
 //app.listen(3000, () =>{
