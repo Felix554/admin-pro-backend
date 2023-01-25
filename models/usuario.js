@@ -37,9 +37,9 @@ UsuarioSchema.method('toJSON', function(){
     //Obtener la instancia del objeto actual
     /**
      * Extraigo los siguientes valores de ese objeto
-     * __v, _id, ...Object
+     * __v, _id,password, ...Object y no los muestre en el resultado
      */
-    const {__v, _id, ...Object }=this.toObject();
+    const {__v, _id, password, ...Object }=this.toObject();
 
     Object.uid = _id;
     return Object;

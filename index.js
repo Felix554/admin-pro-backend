@@ -39,7 +39,7 @@ app.use('/api/usuarios', require('./routes/usuarios') );
 
 
 
-//PAra levantarlo
+//Para levantarlo
 //app.listen(3000, () =>{
 app.listen( process.env.PORT, () =>{
     console.log("Servidor corriendo por el puerto:" + process.env.PORT);
