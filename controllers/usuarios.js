@@ -3,6 +3,7 @@ const { response } = require('express');
 //Importamos la libreria par encriptar
 const bcrypt = require('bcryptjs');
 
+const { generarJWT } =require('../helpers/jwt');
 //IMportamos el modelo Usuario
 const Usuario = require('../models/usuario');
 
@@ -40,7 +41,11 @@ const crearUsuario = async(req,res = response) =>{
             });
         }
 
+        
         const usuario = new Usuario(req.body);
+
+        //Generar el Token
+        const token = await generarJWT(usuario.id);  
 
         //Encriptar Clave
         //Generamos la data de manera aleatoria
@@ -53,7 +58,8 @@ const crearUsuario = async(req,res = response) =>{
 
         res.json({
             ok: true,
-            usuario
+            usuario,
+            token
         });
         
     } catch (error) {
