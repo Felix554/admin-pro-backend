@@ -4,13 +4,14 @@
 const { Router } = require('express');
 const { check} = require('express-validator');
 const { validarCampos } = require('../middlewares/validar-campos');//Middleware Para las validaciones
+const { validarJWT } = require('../middlewares/validar-jwt');//Middleware Para las validaciones del Token
 //Importamos el controlador usuarios
 const { getUsuarios, crearUsuario, actualizarUsuario, eliminarUsuario} = require('../controllers/usuarios');
 
 const router = Router();
 
 
-router.get('/', getUsuarios);
+router.get('/',validarJWT, getUsuarios);
 
 //Crear Usuarios
 router.post('/',
@@ -24,6 +25,7 @@ router.post('/',
 
 router.put('/:id',
         [
+            validarJWT,
             check('nombre', 'El nombre es Obligatorio').not().isEmpty(),
             check('email', 'El email es Obligatorio').isEmail(),
             check('role', 'El role es Obligatorio').not().isEmpty(),
@@ -33,6 +35,7 @@ router.put('/:id',
 );
 
 router.delete('/:id',
+        validarJWT,
         eliminarUsuario
 );
 

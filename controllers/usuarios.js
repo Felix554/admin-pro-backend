@@ -12,10 +12,11 @@ const getUsuarios = async(req ,res) =>{
     //const usuarios = await Usuario.find(); //Envia todos los datos
     //{} = idicar un filtro + el nombre del filtro
     const usuarios = await Usuario.find({}, 'nombre email role google' );
-
+    //req.uid = se obtiene el uid de el usuario que realizo la peticion
     res.json({
         ok: true,
-        usuarios
+        usuarios,
+        uid:req.uid
     });
 
 }
@@ -27,8 +28,6 @@ const crearUsuario = async(req,res = response) =>{
     const {email, password, nombre} = req.body;
 
     //Para el manejos de Errores
-
-
     try {
 
         //Validar si Email Existe
