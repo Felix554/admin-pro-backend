@@ -28,6 +28,7 @@ console.log( process.env );
 //Rutas
 //Utilizamos los Midelwers + Ruta 
 app.use('/api/usuarios', require('./routes/usuarios') );
+app.use('/api/hospitales', require('./routes/hospitales') );
 app.use('/api/login', require('./routes/auth') );
 /*app.get('/', (req,res) =>{
 
